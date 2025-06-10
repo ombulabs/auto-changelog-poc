@@ -1,0 +1,24 @@
+name: "Auto Changelog"
+description: "Generate a changelog entry automatically from a pull request using AI."
+author: "FastRuby.io"
+
+inputs:
+  openai_api_key:
+    description: "OpenAI API key."
+    required: true
+
+  github_token:
+    description: "GitHub token for authentication."
+    required: true
+
+  mode:
+    description: "How to suggest the changelog entry: commit | comment"
+    required: false
+    default: "comment"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    OPENAI_API_KEY: ${{ inputs.openai_api_key }}
+    GITHUB_TOKEN: ${{ inputs.github_token }}
