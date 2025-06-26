@@ -49,7 +49,7 @@ module AutoChangelog
     end
 
     def max_lines_to_read
-      ENV["INPUT_MAX_LINES_TO_READ"] || MAX_LINES_TO_READ
+      ENV["INPUT_MAX_LINES_TO_READ"]&.to_i || MAX_LINES_TO_READ
     end
 
     def mode
