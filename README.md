@@ -30,5 +30,7 @@ jobs:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog_path: "CHANGELOG.md"
+          model_name: "gpt-4o"
+          model_temperature: 0.4
           mode: [comment | commit]
 ```

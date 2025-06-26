@@ -19,10 +19,10 @@ module AutoChangelog
 
         response = @client.chat(
           parameters: {
-            model: "gpt-4o",
+            model: model_name,
             response_format: { type: "json_object" },
             messages: messages,
-            temperature: 0.4,
+            temperature: temperature
           }
         )
 
@@ -40,6 +40,14 @@ module AutoChangelog
     end
 
     private
+
+    def model_name
+      ENV["INPUT_MODEL_NAME"] || "gpt-4o"
+    end
+
+    def temperature
+      ENV["INPUT_MODEL_TEMPERATURE"] || 0.4
+    end
 
     def build_messages(pr_info, changelog_content, error_message)
       base = [
@@ -66,8 +74,8 @@ module AutoChangelog
         Given the following pull request information and existing changelog content, classify the section and generate a changelog entry.
 
         PR Title: #{pr_info[:title]}
-        
-        PR Description: 
+
+        PR Description:
         #{pr_info[:body]}
 
         Files Changed:

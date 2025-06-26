@@ -21,6 +21,16 @@ inputs:
     required: false
     default: "CHANGELOG.md"
 
+  model_name:
+    description: "The model to use in the LLM for generating the changelog entry."
+    required: false
+    default: "gpt-4o"
+
+  model_temperature:
+    description: "The temperature to use in the LLM for generating the changelog entry."
+    required: false
+    default: 0.4
+
 runs:
   using: "docker"
   image: "Dockerfile"
