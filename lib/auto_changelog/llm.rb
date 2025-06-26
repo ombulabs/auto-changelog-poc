@@ -46,7 +46,7 @@ module AutoChangelog
     end
 
     def temperature
-      ENV["INPUT_MODEL_TEMPERATURE"] || 0.4
+      ENV["INPUT_MODEL_TEMPERATURE"]&.to_f || 0.4
     end
 
     def build_messages(pr_info, changelog_content, error_message)
