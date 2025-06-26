@@ -5,9 +5,8 @@ require "json"
 
 module AutoChangelog
   class GithubClient
-    CHANGELOG_PATH = "CHANGELOG.md"
-
-    def initialize
+    def initialize(changelog_path)
+      @changelog_path = changelog_path
       @repo = ENV['GITHUB_REPOSITORY']
       @token = ENV['GITHUB_TOKEN']
       @client = Octokit::Client.new(access_token: @token)
@@ -72,8 +71,8 @@ module AutoChangelog
 
       @client.update_contents(
         @repo,
-        CHANGELOG_PATH,
-        "chore: updated CHANGELOG for PR ##{@pr_number}",
+        @changelog_path,
+        "chore: updated #{@changelog_path} for PR ##{@pr_number}",
         file_sha,
         updated_content,
         branch: @pr_branch
@@ -83,7 +82,7 @@ module AutoChangelog
     end
 
     def fetch_file_info(section)
-      file = @client.contents(@repo, path: CHANGELOG_PATH, ref: @pr_branch)
+      file = @client.contents(@repo, path: @changelog_path, ref: @pr_branch)
       decoded_content = Base64.decode64(file[:content])
       lines = decoded_content.lines
 

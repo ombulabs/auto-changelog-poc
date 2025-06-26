@@ -16,6 +16,11 @@ inputs:
     required: false
     default: "comment"
 
+  changelog_path:
+    description: "Path to the changelog file."
+    required: false
+    default: "CHANGELOG.md"
+
 runs:
   using: "docker"
   image: "Dockerfile"

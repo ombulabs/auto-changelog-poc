@@ -17,7 +17,7 @@ jobs:
   test-auto-changelog:
     if: github.event.label.name == '[label]'
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -29,5 +29,6 @@ jobs:
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          changelog_path: "CHANGELOG.md"
           mode: [comment | commit]
 ```
