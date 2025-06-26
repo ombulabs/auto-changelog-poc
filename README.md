@@ -32,5 +32,6 @@ jobs:
           changelog_path: "CHANGELOG.md"
           model_name: "gpt-4o"
           model_temperature: 0.4
+          max_lines_to_read: 50
           mode: [comment | commit]
 ```

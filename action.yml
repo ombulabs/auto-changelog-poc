@@ -31,6 +31,11 @@ inputs:
     required: false
     default: 0.4
 
+  max_lines_to_read:
+    description: "The maximum number of lines to read from the changelog file."
+    required: false
+    default: 50
+
 runs:
   using: "docker"
   image: "Dockerfile"
